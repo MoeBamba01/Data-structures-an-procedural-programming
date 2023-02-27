@@ -1,0 +1,76 @@
+ALGORITHM dot_product
+// Algorithme pour la procédure "dot_product" :
+PROCEDURE procedure_dot_product(v1,v2 : ARRAY_OF real; var ps: real)
+VAR
+    i := INTEGER
+    ps := real  // real est un type de données qui représente les nombres à virgule .
+BEGIN
+    ps := 0;
+    FOR i FROM 0 TO max Length(v1)-1 STEP 1  DO
+    ps:= ps v1[i]*v2[i]
+    END_FOR
+END
+// Algorithme permettant de déterminer si deux vecteurs sont orthogonaux en utilisant la procédure "dot_product" :
+PROCEDURE procedure_orthogonal_vectors(n: INTEGER; vectors: ARRAY_OF record[];
+    v1,v2 ARRAY_OF real;
+    end; var orthogonal: ARRAY_OF BOOLEAN)
+VAR
+    i := INTEGER
+    ps := real //  real est un type de données qui représente les nombres à virgule.
+BEGIN
+    Write("Give vector size")
+    Read (n)
+    Read (m)
+    setLenght(orthogonal, n);
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Write("Give vector element v1.");
+        Read(v1[n]);
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        Write("Give vector element v2.");
+        Read(v2[m]);
+    END_FOR
+
+    BEGIN
+    dot_product(vectors[i].v1, vectors[j].v2, ps);
+    orthogonal[i],[j] := (ps = 0);
+            IF (Result := 0;) THEN
+    Write("Vectors are Orthogonal")
+    ELSE
+    Write("Vectors are not Orthogonal")
+    END_FOR
+END
+
+
+// Algorithme pour la fonction "dot_product" :
+FUNCTION dot_product(v1, v2: ARRAY_OF real) : real
+VAR
+    i: INTEGER;
+BEGIN
+    FOR i FROM 0 TO Length (v1)-1 STEP 1  DO
+        ps := ps + (v1[i]*v2[i]);
+    END_FOR
+END
+// Algorithme permettant de déterminer si deux vecteurs sont orthogonaux à l'aide de la fonction "dot_product".
+FUNCTION orthogonal_vectors (n: integer; vectors: ARRAY_OF record
+    v1, v2: array of real;
+    end);
+VAR
+    n := INTEGER
+    m := INTEGER
+    Result := FLOAT
+BEGIN
+    Write("Give vector size")
+    Read (n);
+    Read (m);
+    SetLength(Result, n);
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Result[i] := (dot_product(vectors[i].v1, vectors[j].v2) = 0);
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        sResult[j] := (dot_product(vectors[i].v1, vectors[j].v2) = 0);
+    END_FOR
+        IF (Result := 0;) THEN
+    Write("Vectors are Orthogonal");
+    ELSE
+    Write("Vectors are not Orthogonal");
+    END_FOR
+END

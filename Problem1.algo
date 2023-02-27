@@ -1,0 +1,42 @@
+ALGORITHM sum_of_distinct_elements;
+FUNCTION sum_of_distinct_elements(set1, set2: IntArray) : INTEGER
+VAR
+    arraySize, i, sum := INTEGER;
+    arrayUnion := IntArray; // The size of arrayUnion is set to the sum of the lengths of set1 and set2 to ensure that it can store all the elements from both sets.
+BEGIN
+// Combinons les deux ensembles en un seul tableau
+    arraySize := Length(set1) + Length(set2); // Length is a built-in function that returns the number of elements in an array
+    SetLength(arrayUnion, arraySize);
+    FOR i FROM 0 TO high(set1) STEP 1  DO
+        BEGIN
+        arrayUnion[i] := set1[i];
+    END_FOR
+    FOR i FROM 0 TO high(set2) STEP 1  DO
+        BEGIN
+        arrayUnion[Length(set1)+i] := set2[i];
+    END_FOR
+// Initialisons une variable pour garder la trace de l'élément précédent.
+    previousElement := -1;
+// Initialisons une variable de somme à 0
+    sum := 0;
+// Itérerons à travers le tableau et ajoutons chaque élément distinct à la variable somme
+FOR i FROM 0 TO high(arrayUnion) STEP 1  DO
+    BEGIN
+    IF (i = 0) or (arrayUnion [i] <> previousElement) THEN
+        BEGIN
+        sum := sum + arrayUnion[i];
+// Initialiser une variable pour garder la trace de l'élément précédent.
+        previousElement := arrayUnion[i];
+        write(arrayUnion[i], ' ');
+        END_IF;
+    END_FOR;
+// Retournons la somme des éléments distincts
+        Result := sum;
+END
+VAR
+    set1, set2 := IntArray;
+BEGIN
+    set1 := IntArray.Create(3, 1, 7, 9);
+    set2 := IntArray.Create(2, 4, 1, 9, 3);
+    write (sum_of_distinct_elements(set1,set2)); // resultat 13    
+END
